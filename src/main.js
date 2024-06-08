@@ -46,7 +46,6 @@ app.post('/fizzbuzz/file', upload.single('file'), async (req, res) => {
     try {
         const readInterface = readline.createInterface({
             input: fs.createReadStream(filePath),
-            output: process.stdout,
             console: false
         });
 
@@ -76,7 +75,6 @@ app.post('/fizzbuzz/file/html', upload.single('file'), async (req, res) => {
     try {
         const readInterface = readline.createInterface({
             input: fs.createReadStream(filePath),
-            output: process.stdout,
             console: false
         });
 
