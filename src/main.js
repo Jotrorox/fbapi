@@ -12,6 +12,7 @@ const unlinkAsync = promisify(fs.unlink);
 app.use(express.json());
 
 const fizzbuzz = (num) => {
+    if (num < 0) return num.toString();
     if (num % 15 === 0) return 'FizzBuzz';
     if (num % 3 === 0) return 'Fizz';
     if (num % 5 === 0) return 'Buzz';
@@ -61,3 +62,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;
