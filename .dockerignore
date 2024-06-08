@@ -1,0 +1,8 @@
+.github
+__tests__
+node_modules
+uploads
+web
+LICENSE
+package-lock.json
+.gitignore
