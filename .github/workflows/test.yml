@@ -18,4 +18,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - run: npm install
     - run: npm ci
