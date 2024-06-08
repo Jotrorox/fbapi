@@ -3,6 +3,7 @@ const multer = require('multer');
 const fs = require('fs');
 const { promisify } = require('util');
 const readline = require('readline');
+const cors = require('cors');
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -10,6 +11,7 @@ const upload = multer({ dest: 'uploads/' });
 const unlinkAsync = promisify(fs.unlink);
 
 app.use(express.json());
+app.use(cors())
 
 const fizzbuzz = (num) => {
     if (num < 0) return num.toString();
