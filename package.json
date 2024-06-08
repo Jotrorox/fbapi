@@ -1,7 +1,37 @@
 {
+  "name": "fbapi",
+  "version": "1.0.0",
+  "description": "A simple api that exposes endpoints for \"Fizz Buzzing\"",
+  "author": {
+    "name": "Johannes (Jotrorox) Müller",
+    "email": "mail@jotrorox.com",
+    "url": "https://jotrorox.com"
+  },
+  "license": "AGPL-3.0-only",
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "keywords": [
+    "api",
+    "fizzbuzz",
+    "coding-sloth",
+    "sloth-bytes",
+    "challenge",
+    "Education",
+    "Other"
+  ],
+  "homepage": "https://github.com/Jotrorox/fbapi",
+  "displayName": "FizzBuzz API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jotrorox/fbapi"
+  },
+  "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
-    "dev": "nodemon src/main.js"
+    "dev": "nodemon src/main.js",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.19.2",
