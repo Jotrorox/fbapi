@@ -96,11 +96,20 @@
                 .then(response => response.json())
                 .then(data => {
                     fileResultsDiv.innerHTML = JSON.stringify(data.results, null, 2);
+                    localStorage.setItem('fizzbuzzResults', JSON.stringify(data.results));
                 })
                 .catch(error => {
                     console.error("Error processing file:", error);
                 });
         });
+
+        window.onload = function () {
+            const fileResultsDiv = document.getElementById('fileResults');
+            const fileResults = localStorage.getItem('fileResults');
+            if (fileResults) {
+                fileResultsDiv.innerHTML = fileResults;
+            }
+        };
     </script>
 
 </body>
