@@ -13,6 +13,7 @@
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-development-requirements">Development Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting-development-setup">Development Setup</a> &#xa0; | &#xa0;
   <a href="#dash-getting-started">Getting Started</a> &#xa0; | &#xa0;
@@ -28,6 +29,18 @@
 fbAPI is a simple API made for 'FizzBuzzing' that means it is just a simple way to fizz buzz one or more numbers.
 This API was build after the Idea of CodingSloth ([I can recommend his Newsletter btw.](https://slothbytes.beehiiv.com/subscribe?ref=leLwLkdsZI)).
 And it is just meant as a simple exercise, since I don't think this can ever come in handy.
+
+## :sparkles: Features ##
+
+> Just to be clear this has a lot of features that you right now have to find in source.
+> I will provide a more in depth documentation later on but right now I'm sorry but it is what it is.
+
+:heavy_check_mark: Fizz Buzzing\
+:heavy_check_mark: Multiple Number queries\
+:heavy_check_mark: Random Numbers & Number ranges\
+:heavy_multiplication_x: Docker setup
+
+**If you want more info or help just hit me up with the ways listed in the Starting section or on my website ([jotrorox.com](https://jotrorox.com/))**
 
 ## :white_check_mark: Development Requirements ##
 
