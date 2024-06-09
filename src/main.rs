@@ -1,5 +1,5 @@
 // Importing the JSON module from Rocket's serde package for JSON serialization and deserialization
-use rocket::serde::json::Json;
+use rocket::{response::content::RawHtml, serde::json::Json};
 
 // Macro to enable external crates like Rocket
 #[macro_use] extern crate rocket;
@@ -23,9 +23,9 @@ struct FizzBuzzResult {
 
 // Handler for the root path ("/")
 #[get("/")]
-fn hello() -> &'static str {
-    // Returning a static string with information about the API
-    "This is a FizzBuzz API. Try /fizzbuzz/<number>. For more information, visit https://github.com/Jotrorox/fbapi."
+fn home() -> RawHtml<String> {
+    // Return the index.html file as a simple example and showcase of the FizzBuzz API
+    RawHtml(String::from(include_str!("../web/index.html")))
 }
 
 // Handler for the "/fizzbuzz/<number>" path, capturing the number as an i32
@@ -40,6 +40,16 @@ fn fizzbuzz_single(number: i32) -> SuccessResponse<FizzBuzzResult> {
             result,
         }),
     }
+}
+
+// Handler for the "/html/fizzbuzz/<number>" path, capturing the number as an i32
+// This handler returns an HTML response instead of JSON which is useful for libraries like htmx
+#[get("/html/fizzbuzz/<number>")]
+fn fizzbuzz_single_html(number: i32) -> String {
+    // Computing the FizzBuzz result for the given number
+    let result = fizzbuzz(number);
+    // Creating an HTML response with the FizzBuzz result
+    format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\"{}</p></div>", number, result)
 }
 
 // Utility function to compute the FizzBuzz result for a given number
@@ -59,5 +69,5 @@ fn rocket() -> _ {
     // Building and configuring the Rocket instance
     rocket::build()
         // Mounting routes for the handlers
-       .mount("/", routes![hello, fizzbuzz_single])
+       .mount("/", routes![home, fizzbuzz_single, fizzbuzz_single_html])
 }

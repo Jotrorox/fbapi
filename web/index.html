@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fbAPI - FizzBuzz API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        #input-container {
+            margin-bottom: 20px;
+        }
+
+        #result-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FizzBuzz API Client</h1>
+    <p>This is a simple client for interacting with the FizzBuzz API.</p>
+
+    <div id="input-container">
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" min="1">
+        <button onclick="fetchFizzBuzz()">Submit</button>
+    </div>
+
+    <div id="result-container">
+        <h2>Result:</h2>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function fetchFizzBuzz() {
+            const numberInput = document.getElementById('number');
+            const resultElement = document.getElementById('result');
+
+            if (!numberInput.value) {
+                alert('Please enter a number.');
+                return;
+            }
+
+            fetch(`/fizzbuzz/${numberInput.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    const { number, result } = data;
+                    resultElement.textContent = `${number}: ${result}`;
+                })
+                .catch(error => console.error('Error fetching FizzBuzz:', error));
+        }
+    </script>
+</body>
+
+</html>
