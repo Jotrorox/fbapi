@@ -10,9 +10,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bb77cc8a63.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: "Ubuntu", sans-serif;
+            font-size: 1.5rem;
             background-color: #2e3440;
             color: #d8dee9;
             display: flex;
@@ -29,7 +31,7 @@
             border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 1rem;
-            width: 50vh;
+            width: 50vw;
             text-align: center;
             animation: slideUp 0.5s ease-in-out;
             transition: transform 0.5s ease-in-out;
@@ -54,7 +56,7 @@
             background-color: #3b4252;
             border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 50vh;
+            width: 50vw;
             text-align: center;
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -67,19 +69,25 @@
             background-color: #81a1c1;
             color: #eceff4;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 1.5rem;
         }
 
         #number {
-            padding: 0.5rem;
+            padding: 1rem;
             border-radius: 0.5rem;
             border: 1px solid #4c566a;
-            margin-right: 10px;
+            margin-right: 0.5rem;
         }
 
+        #number:focus {
+            outline: none;
+            border-color: #5e81ac;
+        }
+        
         @keyframes slideUp {
             0% {
                 opacity: 0;
@@ -121,11 +129,12 @@
         <h1>FizzBuzz API</h1>
         <p>This is a simple client for interacting with the FizzBuzz API.</p>
 
-        <div id="input-container">
-            <label for="number">Enter a number:</label>
-            <input type="number" id="number" min="1">
-            <button class="input_btn" onclick="fetchFizzBuzz()">Submit</button>
-        </div>
+        <form id="fizzbuzz-form">
+            <div id="input-container">
+                <input type="number" id="number" min="1" placeholder="enter a number">
+                <button class="input_btn" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
 
     <div id="result-container">
@@ -158,6 +167,12 @@
                 })
                 .catch(error => console.error('Error fetching FizzBuzz:', error));
         }
+
+        document.getElementById('fizzbuzz-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            fetchFizzBuzz();
+        });
     </script>
 </body>
 
