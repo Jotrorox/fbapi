@@ -60,6 +60,23 @@ fn fizzbuzz_multiple(numbers: Json<Vec<i128>>) -> SuccessResponse<Vec<FizzBuzzRe
     }
 }
 
+// Handler for the "/fizzbuzz/range/<start>/<end>" path, capturing the start and end numbers as i128
+#[get("/fizzbuzz/range/<start>/<end>")]
+fn fizzbuzz_range(start: i128, end: i128) -> SuccessResponse<Vec<FizzBuzzResult>> {
+    // Computing the FizzBuzz result for each number in the range
+    let results: Vec<FizzBuzzResult> = (start..=end)
+        .map(|number| FizzBuzzResult {
+            number,
+            result: fizzbuzz(number),
+        })
+        .collect();
+    
+    // Creating a SuccessResponse with the FizzBuzz results
+    SuccessResponse {
+        data: Json(results),
+    }
+}
+
 // Handler for the "/html/fizzbuzz/<number>" path, capturing the number as an i128
 // This handler returns an HTML response instead of JSON which is useful for libraries like htmx
 #[get("/html/fizzbuzz/<number>")]
@@ -79,6 +96,21 @@ fn fizzbuzz_multiple_html(numbers: Json<Vec<i128>>) -> String {
         .iter()
         .map(|number| {
             let result = fizzbuzz(*number);
+            format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\">{}</p></div>", number, result)
+        })
+        .collect();
+    
+    // Creating an HTML response with the FizzBuzz results
+    format!("<div class=\"fbapi_resps\">{}</div>", results)
+}
+
+// Handler for the "/html/fizzbuzz/range/<start>/<end>" path, capturing the start and end numbers as i128
+#[get("/html/fizzbuzz/range/<start>/<end>")]
+fn fizzbuzz_range_html(start: i128, end: i128) -> String {
+    // Computing the FizzBuzz result for each number in the range
+    let results: String = (start..=end)
+        .map(|number| {
+            let result = fizzbuzz(number);
             format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\">{}</p></div>", number, result)
         })
         .collect();
@@ -109,6 +141,8 @@ fn rocket() -> _ {
             fizzbuzz_single,
             fizzbuzz_multiple,
             fizzbuzz_single_html,
-            fizzbuzz_multiple_html
+            fizzbuzz_multiple_html,
+            fizzbuzz_range,
+            fizzbuzz_range_html
         ])
 }
