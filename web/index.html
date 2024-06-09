@@ -100,6 +100,17 @@
         #number:focus::placeholder {
             color: transparent;
         }
+
+        .icons {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .icons a {
+            color: #d8dee9;
+            text-decoration: none;
+        }
         
         @keyframes slideUp {
             0% {
@@ -138,6 +149,12 @@
 </head>
 
 <body>
+    <div class="icons">
+        <a href="https://github.com/jotrorox/fbapi" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github fa-2x"></i>
+        </a>
+    </div>
+
     <div class="container">
         <h1>FizzBuzz API</h1>
         <p>This is a simple client for interacting with the FizzBuzz API.</p>
