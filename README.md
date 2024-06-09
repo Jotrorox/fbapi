@@ -26,12 +26,15 @@
 
 ## :dart: About ##
 
-fbAPI is a simple API made for 'FizzBuzzing' that means it is just a simple way to fizz buzz one or more numbers  
+fbAPI is a simple API made for 'FizzBuzzing' that means it is just a simple way to fizz buzz one or more numbers.
+This API was build after the Idea of CodingSloth ([I can recommend his Newsletter btw.](https://slothbytes.beehiiv.com/subscribe?ref=leLwLkdsZI)).
+And it is just meant as a simple exercise, since I don't think this can ever come in handy.
 
 ## :sparkles: Features ##
 
 :heavy_check_mark: Single Number query\
-:heavy_multiplication_x: Allowing more sources
+:heavy_multiplication_x: Allowing more sources\
+:heavy_multiplication_x: Docker setup
 
 ## :white_check_mark: Development Requirements ##
 
