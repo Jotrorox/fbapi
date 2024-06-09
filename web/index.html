@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fbAPI - FizzBuzz API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: "Ubuntu", sans-serif;
+            background-color: #2e3440;
+            color: #d8dee9;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,11 +24,11 @@
         }
 
         .container {
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
+            padding: 1rem;
+            background-color: #3b4252;
+            border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
             width: 50vh;
             text-align: center;
             animation: slideUp 0.5s ease-in-out;
@@ -30,22 +36,22 @@
         }
 
         #input-container {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
         .container.move-up {
-            transform: translateY(-20px);
+            transform: translateY(-1rem);
         }
 
         #result-container:target~.container {
-            transform: translateY(-20px);
+            transform: translateY(-1rem);
         }
 
         #result-container {
             display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: white;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #3b4252;
             border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 50vh;
@@ -57,10 +63,27 @@
             display: block;
         }
 
+        .input_btn {
+            background-color: #81a1c1;
+            color: #eceff4;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #number {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #4c566a;
+            margin-right: 10px;
+        }
+
         @keyframes slideUp {
             0% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(1rem);
             }
 
             100% {
@@ -72,12 +95,22 @@
         @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-1rem);
             }
 
             100% {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+
+            #result-container {
+                width: 80%;
             }
         }
     </style>
@@ -88,10 +121,11 @@
         <h1>FizzBuzz API</h1>
         <p>This is a simple client for interacting with the FizzBuzz API.</p>
 
-        <div id="input-container"></div>
-        <label for="number">Enter a number:</label>
-        <input type="number" id="number" min="1">
-        <button onclick="fetchFizzBuzz()">Submit</button>
+        <div id="input-container">
+            <label for="number">Enter a number:</label>
+            <input type="number" id="number" min="1">
+            <button class="input_btn" onclick="fetchFizzBuzz()">Submit</button>
+        </div>
     </div>
 
     <div id="result-container">
