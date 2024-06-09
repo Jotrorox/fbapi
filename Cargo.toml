@@ -1,7 +1,33 @@
 [package]
 name = "fbapi"
 version = "0.1.0"
+authors = [
+    "Johannes (Jotrorox) Müller"
+]
 edition = "2021"
+description = "A simple API to `FizzBuzz` numbers"
+license = "AGPL-3.0"
+license-file = "LICENSE"
+repository = "https://github.com/Jotrorox/fbapi"
+homepage = "https://jotrorox.github.io/fbapi/"
+readme = "README.md"
+keywords = [
+    "fizzbuzz", 
+    "api", 
+    "rocket", 
+    "rust", 
+    "challenge", 
+    "sloth-bytes", 
+    "coding-sloth"
+]
+categories = [
+    "web-programming",
+    "api", "fizzbuzz", 
+    "rust", 
+    "challenge", 
+    "sloth-bytes", 
+    "coding-sloth"
+]
 
 [dependencies]
 rocket = { version = "0.5.1", features = ["json"] }
