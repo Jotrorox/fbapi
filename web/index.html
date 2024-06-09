@@ -12,6 +12,10 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/bb77cc8a63.js" crossorigin="anonymous"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: "Ubuntu", sans-serif;
             font-size: 1.5rem;
@@ -74,6 +78,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
             font-size: 1.5rem;
+            font-family: "Ubuntu", sans-serif;
         }
 
         #number {
@@ -86,6 +91,10 @@
         #number:focus {
             outline: none;
             border-color: #5e81ac;
+        }
+
+        #number::placeholder {
+            font-family: "Ubuntu", sans-serif;
         }
         
         @keyframes slideUp {
