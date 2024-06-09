@@ -7,7 +7,6 @@ authors = [
 edition = "2021"
 description = "A simple API to `FizzBuzz` numbers"
 license = "AGPL-3.0"
-license-file = "LICENSE"
 repository = "https://github.com/Jotrorox/fbapi"
 homepage = "https://jotrorox.github.io/fbapi/"
 readme = "README.md"
