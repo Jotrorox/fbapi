@@ -77,6 +77,22 @@ fn fizzbuzz_range(start: i128, end: i128) -> SuccessResponse<Vec<FizzBuzzResult>
     }
 }
 
+// Handler for the "/fizzbuzz/random" path
+#[get("/fizzbuzz/random")]
+fn fizzbuzz_random() -> SuccessResponse<FizzBuzzResult> {
+    // Generating a random number
+    let number = rand::random::<i128>();
+    // Computing the FizzBuzz result for the random number
+    let result = fizzbuzz(number);
+    // Creating a SuccessResponse with the FizzBuzzResult
+    SuccessResponse {
+        data: Json(FizzBuzzResult {
+            number,
+            result,
+        }),
+    }
+}
+
 // Handler for the "/html/fizzbuzz/<number>" path, capturing the number as an i128
 // This handler returns an HTML response instead of JSON which is useful for libraries like htmx
 #[get("/html/fizzbuzz/<number>")]
@@ -119,6 +135,17 @@ fn fizzbuzz_range_html(start: i128, end: i128) -> String {
     format!("<div class=\"fbapi_resps\">{}</div>", results)
 }
 
+// Handler for the "/html/fizzbuzz/random" path
+#[get("/html/fizzbuzz/random")]
+fn fizzbuzz_random_html() -> String {
+    // Generating a random number
+    let number = rand::random::<i128>();
+    // Computing the FizzBuzz result for the random number
+    let result = fizzbuzz(number);
+    // Creating an HTML response with the FizzBuzz result
+    format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\">{}</p></div>", number, result)
+}
+
 // Utility function to compute the FizzBuzz result for a given number
 fn fizzbuzz(number: i128) -> String {
     // Using pattern matching to determine the FizzBuzz result based on divisibility
@@ -143,6 +170,8 @@ fn rocket() -> _ {
             fizzbuzz_single_html,
             fizzbuzz_multiple_html,
             fizzbuzz_range,
-            fizzbuzz_range_html
+            fizzbuzz_range_html,
+            fizzbuzz_random,
+            fizzbuzz_random_html
         ])
 }
