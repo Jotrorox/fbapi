@@ -17,7 +17,7 @@ struct SuccessResponse<T: rocket::serde::Serialize> {
 #[derive(serde::Serialize)]
 struct FizzBuzzResult {
     // Fields to store the input number and the computed FizzBuzz result
-    number: i32,
+    number: i128,
     result: String,
 }
 
@@ -28,9 +28,9 @@ fn home() -> RawHtml<String> {
     RawHtml(String::from(include_str!("../web/index.html")))
 }
 
-// Handler for the "/fizzbuzz/<number>" path, capturing the number as an i32
+// Handler for the "/fizzbuzz/<number>" path, capturing the number as an i128
 #[get("/fizzbuzz/<number>")]
-fn fizzbuzz_single(number: i32) -> SuccessResponse<FizzBuzzResult> {
+fn fizzbuzz_single(number: i128) -> SuccessResponse<FizzBuzzResult> {
     // Computing the FizzBuzz result for the given number
     let result = fizzbuzz(number);
     // Creating a SuccessResponse with the FizzBuzzResult
@@ -42,10 +42,10 @@ fn fizzbuzz_single(number: i32) -> SuccessResponse<FizzBuzzResult> {
     }
 }
 
-// Handler for the "/html/fizzbuzz/<number>" path, capturing the number as an i32
+// Handler for the "/html/fizzbuzz/<number>" path, capturing the number as an i128
 // This handler returns an HTML response instead of JSON which is useful for libraries like htmx
 #[get("/html/fizzbuzz/<number>")]
-fn fizzbuzz_single_html(number: i32) -> String {
+fn fizzbuzz_single_html(number: i128) -> String {
     // Computing the FizzBuzz result for the given number
     let result = fizzbuzz(number);
     // Creating an HTML response with the FizzBuzz result
@@ -53,7 +53,7 @@ fn fizzbuzz_single_html(number: i32) -> String {
 }
 
 // Utility function to compute the FizzBuzz result for a given number
-fn fizzbuzz(number: i32) -> String {
+fn fizzbuzz(number: i128) -> String {
     // Using pattern matching to determine the FizzBuzz result based on divisibility
     match (number % 3, number % 5) {
         (0, 0) => "FizzBuzz".into(), // Divisible by both 3 and 5

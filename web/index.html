@@ -8,9 +8,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
             background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         #input-container {
@@ -18,16 +28,22 @@
         }
 
         #result-container {
+            display: none;
             margin-top: 20px;
+        }
+
+        #result-container.visible {
+            display: block;
         }
     </style>
 </head>
 
 <body>
-    <h1>FizzBuzz API Client</h1>
-    <p>This is a simple client for interacting with the FizzBuzz API.</p>
+    <div class="container">
+        <h1>FizzBuzz API</h1>
+        <p>This is a simple client for interacting with the FizzBuzz API.</p>
 
-    <div id="input-container">
+        <div id="input-container"></div>
         <label for="number">Enter a number:</label>
         <input type="number" id="number" min="1">
         <button onclick="fetchFizzBuzz()">Submit</button>
@@ -42,6 +58,7 @@
         function fetchFizzBuzz() {
             const numberInput = document.getElementById('number');
             const resultElement = document.getElementById('result');
+            const resultContainer = document.getElementById('result-container');
 
             if (!numberInput.value) {
                 alert('Please enter a number.');
@@ -53,6 +70,9 @@
                 .then(data => {
                     const { number, result } = data;
                     resultElement.textContent = `${number}: ${result}`;
+                    resultContainer.classList.add('visible');
+
+                    numberInput.value = '';
                 })
                 .catch(error => console.error('Error fetching FizzBuzz:', error));
         }
