@@ -14,6 +14,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            flex-direction: column;
         }
 
         .container {
@@ -21,19 +22,63 @@
             background-color: white;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 50vh;
+            text-align: center;
+            animation: slideUp 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out;
         }
 
         #input-container {
             margin-bottom: 20px;
         }
 
+        .container.move-up {
+            transform: translateY(-20px);
+        }
+
+        #result-container:target~.container {
+            transform: translateY(-20px);
+        }
+
         #result-container {
             display: none;
             margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 50vh;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         #result-container.visible {
             display: block;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -73,6 +118,9 @@
                     resultContainer.classList.add('visible');
 
                     numberInput.value = '';
+
+                    document.querySelector('#result-container').classList.add('visible');
+                    document.querySelector('.container').classList.add('move-up');
                 })
                 .catch(error => console.error('Error fetching FizzBuzz:', error));
         }
