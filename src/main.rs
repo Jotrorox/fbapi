@@ -42,6 +42,24 @@ fn fizzbuzz_single(number: i128) -> SuccessResponse<FizzBuzzResult> {
     }
 }
 
+// Handler for the "/fizzbuzz" path with a JSON body containing numbers
+#[post("/fizzbuzz", data = "<numbers>")]
+fn fizzbuzz_multiple(numbers: Json<Vec<i128>>) -> SuccessResponse<Vec<FizzBuzzResult>> {
+    // Computing the FizzBuzz result for each number in the JSON body
+    let results: Vec<FizzBuzzResult> = numbers
+        .iter()
+        .map(|number| FizzBuzzResult {
+            number: *number,
+            result: fizzbuzz(*number),
+        })
+        .collect();
+    
+    // Creating a SuccessResponse with the FizzBuzz results
+    SuccessResponse {
+        data: Json(results),
+    }
+}
+
 // Handler for the "/html/fizzbuzz/<number>" path, capturing the number as an i128
 // This handler returns an HTML response instead of JSON which is useful for libraries like htmx
 #[get("/html/fizzbuzz/<number>")]
@@ -50,6 +68,23 @@ fn fizzbuzz_single_html(number: i128) -> String {
     let result = fizzbuzz(number);
     // Creating an HTML response with the FizzBuzz result
     format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\"{}</p></div>", number, result)
+}
+
+// Handler for the "/html/fizzbuzz" path with a JSON body containing numbers
+// This handler returns an HTML response instead of JSON which is useful for libraries like htmx
+#[post("/html/fizzbuzz", data = "<numbers>")]
+fn fizzbuzz_multiple_html(numbers: Json<Vec<i128>>) -> String {
+    // Computing the FizzBuzz result for each number in the JSON body
+    let results: String = numbers
+        .iter()
+        .map(|number| {
+            let result = fizzbuzz(*number);
+            format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\">{}</p></div>", number, result)
+        })
+        .collect();
+    
+    // Creating an HTML response with the FizzBuzz results
+    format!("<div class=\"fbapi_resps\">{}</div>", results)
 }
 
 // Utility function to compute the FizzBuzz result for a given number
@@ -69,5 +104,11 @@ fn rocket() -> _ {
     // Building and configuring the Rocket instance
     rocket::build()
         // Mounting routes for the handlers
-       .mount("/", routes![home, fizzbuzz_single, fizzbuzz_single_html])
+       .mount("/", routes![
+            home, 
+            fizzbuzz_single,
+            fizzbuzz_multiple,
+            fizzbuzz_single_html,
+            fizzbuzz_multiple_html
+        ])
 }
