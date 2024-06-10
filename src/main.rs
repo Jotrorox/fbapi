@@ -28,6 +28,13 @@ fn home() -> RawHtml<String> {
     RawHtml(String::from(include_str!("../web/index.html")))
 }
 
+// Handler for the favicon.ico path
+#[get("/favicon.ico")]
+fn favicon() -> &'static [u8] {
+    // Return the favicon file as a byte slice
+    include_bytes!("../web/favicon.ico")
+}
+
 // Handler for the "/fizzbuzz/<number>" path, capturing the number as an i128
 #[get("/fizzbuzz/<number>")]
 fn fizzbuzz_single(number: i128) -> SuccessResponse<FizzBuzzResult> {
@@ -165,6 +172,7 @@ fn rocket() -> _ {
         // Mounting routes for the handlers
        .mount("/", routes![
             home, 
+            favicon,
             fizzbuzz_single,
             fizzbuzz_multiple,
             fizzbuzz_single_html,

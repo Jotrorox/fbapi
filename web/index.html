@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/bb77cc8a63.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
         * {
             box-sizing: border-box;
@@ -27,6 +28,7 @@
             height: 100vh;
             margin: 0;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .container {
@@ -154,6 +156,11 @@
         }
 
         @media screen and (max-width: 768px) {
+            body {
+                overflow: hidden;
+                font-size: 1rem;
+            }
+
             .container {
                 width: 80%;
             }
