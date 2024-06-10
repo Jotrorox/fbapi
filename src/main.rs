@@ -2,7 +2,8 @@
 use rocket::{response::content::RawHtml, serde::json::Json};
 
 // Macro to enable external crates like Rocket
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
 // Deriving Responder for automatic conversion to HTTP response
 #[derive(Responder)]
@@ -42,10 +43,7 @@ fn fizzbuzz_single(number: i128) -> SuccessResponse<FizzBuzzResult> {
     let result = fizzbuzz(number);
     // Creating a SuccessResponse with the FizzBuzzResult
     SuccessResponse {
-        data: Json(FizzBuzzResult {
-            number,
-            result,
-        }),
+        data: Json(FizzBuzzResult { number, result }),
     }
 }
 
@@ -60,7 +58,7 @@ fn fizzbuzz_multiple(numbers: Json<Vec<i128>>) -> SuccessResponse<Vec<FizzBuzzRe
             result: fizzbuzz(*number),
         })
         .collect();
-    
+
     // Creating a SuccessResponse with the FizzBuzz results
     SuccessResponse {
         data: Json(results),
@@ -77,7 +75,7 @@ fn fizzbuzz_range(start: i128, end: i128) -> SuccessResponse<Vec<FizzBuzzResult>
             result: fizzbuzz(number),
         })
         .collect();
-    
+
     // Creating a SuccessResponse with the FizzBuzz results
     SuccessResponse {
         data: Json(results),
@@ -93,10 +91,7 @@ fn fizzbuzz_random() -> SuccessResponse<FizzBuzzResult> {
     let result = fizzbuzz(number);
     // Creating a SuccessResponse with the FizzBuzzResult
     SuccessResponse {
-        data: Json(FizzBuzzResult {
-            number,
-            result,
-        }),
+        data: Json(FizzBuzzResult { number, result }),
     }
 }
 
@@ -122,7 +117,7 @@ fn fizzbuzz_multiple_html(numbers: Json<Vec<i128>>) -> String {
             format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\">{}</p></div>", number, result)
         })
         .collect();
-    
+
     // Creating an HTML response with the FizzBuzz results
     format!("<div class=\"fbapi_resps\">{}</div>", results)
 }
@@ -137,7 +132,7 @@ fn fizzbuzz_range_html(start: i128, end: i128) -> String {
             format!("<div class=\"fbapi_resp\"><p class=\"fbapi_resp_num\">{}</p><p class=\"fbapi_resp_res\">{}</p></div>", number, result)
         })
         .collect();
-    
+
     // Creating an HTML response with the FizzBuzz results
     format!("<div class=\"fbapi_resps\">{}</div>", results)
 }
@@ -170,16 +165,19 @@ fn rocket() -> _ {
     // Building and configuring the Rocket instance
     rocket::build()
         // Mounting routes for the handlers
-       .mount("/", routes![
-            home, 
-            favicon,
-            fizzbuzz_single,
-            fizzbuzz_multiple,
-            fizzbuzz_single_html,
-            fizzbuzz_multiple_html,
-            fizzbuzz_range,
-            fizzbuzz_range_html,
-            fizzbuzz_random,
-            fizzbuzz_random_html
-        ])
+        .mount(
+            "/",
+            routes![
+                home,
+                favicon,
+                fizzbuzz_single,
+                fizzbuzz_multiple,
+                fizzbuzz_single_html,
+                fizzbuzz_multiple_html,
+                fizzbuzz_range,
+                fizzbuzz_range_html,
+                fizzbuzz_random,
+                fizzbuzz_random_html
+            ],
+        )
 }
