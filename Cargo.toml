@@ -8,7 +8,7 @@ edition = "2021"
 description = "A simple API to `FizzBuzz` numbers"
 license = "AGPL-3.0"
 repository = "https://github.com/Jotrorox/fbapi"
-homepage = "https://jotrorox.github.io/fbapi/"
+homepage = "https://fbapi-gh6l.onrender.com/"
 readme = "README.md"
 keywords = [
     "fizzbuzz", 
